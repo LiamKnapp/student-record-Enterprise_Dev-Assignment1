@@ -1,0 +1,46 @@
+﻿@model StudentViewModel
+
+@{
+    ViewData["Title"] = "Add a Student";
+}
+
+<form asp-controller="Student" asp-action="Add"
+      method="post" enctype="application/x-www-form-urlencoded">
+    <!-- a placeholder for validn err msgs, if there are any -->
+    <div class="text-danger" asp-validation-summary="All"></div>
+
+    <div class="form-group">
+        <label asp-for="ActiveStudent.StudentFirstName">First Name</label>
+        <input type="text" asp-for="ActiveStudent.StudentFirstName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ActiveStudent.StudentLastName">Last Name</label>
+        <input type="text" asp-for="ActiveStudent.StudentLastName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ActiveStudent.StudentBirthDate">Birth Date</label>
+        <input type="text" asp-for="ActiveStudent.StudentBirthDate" class="form-control" placeholder="DD/MM/YYYY"/>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ActiveStudent.StudentGPA">GPA</label>
+        <input type="text" asp-for="ActiveStudent.StudentGPA" class="form-control" placeholder="0 - 4" />
+    </div>
+
+    <!-- use the genres in the VM to populate a drop-down list: -->
+    <div class="form-group">
+        <label asp-for="ActiveStudent.ProgramId">Programs</label>
+        <select asp-for="ActiveStudent.ProgramId" class="form-control">
+            <option value="">Please select a program</option>
+            @foreach (Program p in Model.Programs)
+            {
+                <option value="@p.ProgramId">@p.Name</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add</button>
+    <a asp-controller="Student" asp-action="List" class="btn btn-secondary">Cancel</a>
+</form>

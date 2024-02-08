@@ -1,0 +1,16 @@
+﻿@model Student
+
+@{
+    ViewData["Title"] = "Delete Student";
+}
+
+<h4>Are you sure that you want to delete?</h4>
+<p>@Model.StudentFirstName @Model.StudentLastName (Age:@Model.StudentAge)</p>
+<form asp-controller="Student" asp-action="Delete"
+      method="post" enctype="application/x-www-form-urlencoded">
+    <!-- add a hidden form field to store the Student ID: -->
+    <input type="hidden" asp-for="StudentId" />
+
+    <button type="submit" class="btn btn-primary">Delete</button>
+    <a asp-controller="Student" asp-action="List" class="btn btn-secondary">Cancel</a>
+</form>

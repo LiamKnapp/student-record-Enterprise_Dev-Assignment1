@@ -1,0 +1,38 @@
+﻿@model List<Student>
+
+
+@{
+    ViewData["Title"] = "All Students";
+}
+
+<a asp-controller="Student" asp-action="Add">Add new student</a>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Age</th>
+            <th>Program</th>
+            <th>GPA</th>
+            <th>GPA Scale</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Student stu in Model)
+        {
+            <tr>
+                <td>@stu.StudentLastName</td>
+                <td>@stu.StudentFirstName</td>
+                <td>@stu.StudentAge</td>
+                <td>@stu.Program?.Name</td>
+                <td>@stu.StudentGPA</td>
+                <td>@stu.StudentGPAScale</td>
+                <td>
+                    <a asp-controller="Student" asp-action="Edit" asp-route-id="@stu.StudentId">Edit</a>
+                    <span class="my-2">|</span>
+                    <a asp-controller="Student" asp-action="Delete" asp-route-id="@stu.StudentId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
